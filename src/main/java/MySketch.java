@@ -4,9 +4,21 @@ import controlP5.*;
 
 
 public class MySketch extends PApplet {
+
+	private float x;
+	private float y;
+	int framcount = 0;
+	int maxframe = 5;
+	;
+
 	ControlP5 cp5;
+
 	public void setup() {
 		this.getSurface().setResizable(true);
+		background(100, 180, 180);
+		noStroke();
+		frameRate(500);
+
 		cp5 = new ControlP5(this);
 		cp5.addSlider("maxframe")
 				.setPosition(10, 10)
@@ -24,12 +36,20 @@ public class MySketch extends PApplet {
 		size(500, 500);
 	}
 
+	public void mouseDragged() {
+		x = random(5, 50);
+		y = random(5, 50);
+	}
+
 	public void frameResized(int w, int h) {
 
 	}
 
-	public void draw(){
-		background(64);
-		ellipse(mouseX, mouseY, 20, 20);
+	public void draw() {
+		int c = color(100, random(180, 255), random(180, 255), random(15, 150));
+		fill(c);
+		float r = random(width / 40, width / 20);
+		ellipse(random(width), random(height), r, r);
+
 	}
 }
